@@ -1,0 +1,305 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #050505;
+  --foreground: #f5f5f5;
+  --card: #0d0d0d;
+  --card-foreground: #f5f5f5;
+  --popover: #0d0d0d;
+  --popover-foreground: #f5f5f5;
+  --primary: #f59e0b;
+  --primary-foreground: #0a0a0a;
+  --secondary: #161616;
+  --secondary-foreground: #f5f5f5;
+  --muted: #161616;
+  --muted-foreground: #a3a3a3;
+  --accent: #f59e0b;
+  --accent-foreground: #0a0a0a;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(245, 158, 11, 0.15);
+  --input: rgba(245, 158, 11, 0.15);
+  --ring: #f59e0b;
+  --chart-1: #f59e0b;
+  --chart-2: #f97316;
+  --chart-3: #d97706;
+  --chart-4: #ea580c;
+  --chart-5: #b45309;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #f59e0b;
+  --sidebar-primary-foreground: #0a0a0a;
+  --sidebar-accent: #161616;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: rgba(245, 158, 11, 0.15);
+  --sidebar-ring: #f59e0b;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #f59e0b40;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* ===== Hide native cursor when custom cursor is active ===== */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* ===== Grid Background ===== */
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 30s linear infinite;
+}
+
+.grid-bg-static {
+  background-image:
+    linear-gradient(rgba(245, 158, 11, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 158, 11, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ===== Gradient Text ===== */
+.gradient-text {
+  background: linear-gradient(135deg, #f59e0b, #f97316, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Glass-morphism ===== */
+.glass {
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 158, 11, 0.12);
+}
+
+.glass-light {
+  background: rgba(245, 158, 11, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 158, 11, 0.1);
+}
+
+/* ===== Glow ===== */
+.glow-amber {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.15), 0 0 40px rgba(245, 158, 11, 0.05);
+}
+
+.glow-amber-lg {
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.25), 0 0 60px rgba(245, 158, 11, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.4), 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+/* ===== HUD corner brackets ===== */
+.hud-bracket {
+  position: relative;
+}
+.hud-bracket::before,
+.hud-bracket::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  pointer-events: none;
+}
+.hud-bracket::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+.hud-bracket::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ===== Scan line animation ===== */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent);
+  pointer-events: none;
+  z-index: 9998;
+  animation: scanline 8s linear infinite;
+}
+
+/* ===== Blink animation for HUD status dots ===== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.blink {
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+/* ===== Marquee animation ===== */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== Wireframe 3D cube rotation ===== */
+@keyframes wireframeRotate {
+  0% { transform: rotateX(20deg) rotateY(0deg); }
+  100% { transform: rotateX(20deg) rotateY(360deg); }
+}
+
+/* ===== Text scramble cursor ===== */
+.scramble-cursor::after {
+  content: '_';
+  color: #f59e0b;
+  animation: blink 0.8s steps(1) infinite;
+  margin-left: 2px;
+}
+
+/* ===== Pixel dissolve mask for image reveals ===== */
+@keyframes pixelDissolve {
+  0% {
+    -webkit-mask-image: radial-gradient(circle, transparent 0%, black 100%);
+    mask-image: radial-gradient(circle, transparent 0%, black 100%);
+    opacity: 0;
+  }
+  100% {
+    -webkit-mask-image: radial-gradient(circle, black 0%, black 100%);
+    mask-image: radial-gradient(circle, black 0%, black 100%);
+    opacity: 1;
+  }
+}
+
+/* ===== Circuit line draw animation ===== */
+@keyframes drawLine {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ===== Glitch effect ===== */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+.glitch:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* ===== Section separator ===== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.4), transparent);
+  width: 100%;
+}
+
+/* ===== Cursor styles ===== */
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+/* ===== No motion preference ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scanline,
+  .grid-bg {
+    animation: none !important;
+  }
+}
